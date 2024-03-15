@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recipe Book</title>
-</head>
-<body>
-    <h1>Recipe Book</h1>
-    <h2>Recipes List</h2>
+{% extends 'base.html' %}
+
+{% block title %}Recipe List{% endblock %}
+
+{% block page_heading %}
+    <h2>Recipe List</h2>
+{% endblock %}
+
+{% block content %}
     <ul>
-        <li><a href="{% url 'ledger:recipe_detail_1' %}">Recipe 1</a></li>
-        <li><a href="{% url 'ledger:recipe_detail_2' %}">Recipe 2</a></li>
+        {% for recipe in recipes %}
+            <li>
+                <a href="{% url 'ledger:recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+            </li>
+        {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
